@@ -1,5 +1,4 @@
 # clothing_store
-"# clothing_store" 
 # Admin Module – Clothing Store System
 
 ## Overview
