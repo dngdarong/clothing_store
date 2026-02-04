@@ -1,41 +1,36 @@
-name: Build & Deploy Vue App
+name: Build and Deploy Vue to FTP
 
 on:
   push:
     branches:
-      - main   # change if your production branch is different
+      - main  # Set this to your production branch
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
-      - name: 🚚 Checkout repository
+      - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      # 2. Setup Node
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: '20' # 2026 stable LTS version
+          cache: 'npm'
 
-      # 3. Install dependencies
-      - name: 📦 Install packages
-        run: npm install
+      - name: 📦 Install dependencies
+        run: npm ci
 
-      # 4. Build Vue app
-      - name: 🏗️ Build Vue project
+      - name: 🏗️ Build project
         run: npm run build
 
-      # 5. Deploy to FTP
-      - name: 🚀 Deploy to FTP
+      - name: 🚀 Sync files to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/
-          server-dir: /htdocs/
-          protocol: ftp
+          local-dir: ./dist/  # Default Vue build output folder
+          server-dir: /htdocs/  # Your target directory on the server
+          protocol: ftp # Options: ftp, ftps, or ftps-legacy
