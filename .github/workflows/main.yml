@@ -31,6 +31,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/  # Default Vue build output folder
+          local-dir: ./dist/ 
           server-dir: /htdocs/  # Your target directory on the server
           protocol: ftp # Options: ftp, ftps, or ftps-legacys
