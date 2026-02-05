@@ -33,4 +33,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/ 
           server-dir: /htdocs/  # Your target directory on the server
-          protocol: ftp # Options: ftp, ftps, or ftps-legacys
+          protocol: ftp # Options: ftp, ftps, or ftps-legacy
