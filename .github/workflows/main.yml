@@ -3,7 +3,7 @@ name: Build and Deploy Vue to FTP
 on:
   push:
     branches:
-      - main  # Set this to your production branch
+      - main 
 
 jobs:
   build-and-deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # 2026 stable LTS version
+          node-version: '20' 
           cache: 'npm'
 
       - name: 📦 Install dependencies
